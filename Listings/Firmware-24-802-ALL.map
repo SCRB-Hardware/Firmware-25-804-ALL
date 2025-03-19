@@ -1,0 +1,748 @@
+Component: Arm Compiler for Embedded 6.21 Tool: armlink [5ec1fa00]
+
+==============================================================================
+
+Section Cross References
+
+    main.o(.text.main) refers to lib-rcc.o(.text.Sys_ClockInit) for Sys_ClockInit
+    main.o(.text.main) refers to lib-board.o(.text.Board_Init) for Board_Init
+    main.o(.text.main) refers to lib-comms.o(.text.Comms_Init) for Comms_Init
+    main.o(.text.main) refers to lib-board.o(.text.Board_SetPanicLed) for Board_SetPanicLed
+    main.o(.text.main) refers to app-dss.o(.text.launch) for launch
+    main.o(.ARM.exidx.text.main) refers to main.o(.text.main) for [Anonymous Symbol]
+    app-dss.o(.text.launch) refers to lib-driver-gpio.o(.text.DriverGPIO_Init) for DriverGPIO_Init
+    app-dss.o(.text.launch) refers to lib-driver-spi.o(.text.DriverSPI_Init) for DriverSPI_Init
+    app-dss.o(.text.launch) refers to lib-quadrature-enc.o(.text.QEncoder_Init) for QEncoder_Init
+    app-dss.o(.text.launch) refers to lib-limit-switch.o(.text.LMSW_Init) for LMSW_Init
+    app-dss.o(.text.launch) refers to lib-rcc.o(.text.Sys_BlockingDelayM) for Sys_BlockingDelayM
+    app-dss.o(.text.launch) refers to lib-driver-gpio.o(.text.DriverGPIO_SetEnable) for DriverGPIO_SetEnable
+    app-dss.o(.text.launch) refers to lib-driver-spi.o(.text.DriverSPI_WriteDev1) for DriverSPI_WriteDev1
+    app-dss.o(.text.launch) refers to lib-driver-spi.o(.text.DriverSPI_WriteDev2) for DriverSPI_WriteDev2
+    app-dss.o(.text.launch) refers to lib-driver-gpio.o(.text.DriverGPIO_SetDrvoff) for DriverGPIO_SetDrvoff
+    app-dss.o(.text.launch) refers to lib-board.o(.text.Board_SetPanicLed) for Board_SetPanicLed
+    app-dss.o(.text.launch) refers to lib-board.o(.text.Board_SetRunLed) for Board_SetRunLed
+    app-dss.o(.text.launch) refers to lib-comms.o(.text.Comms_CommandRetirement) for Comms_CommandRetirement
+    app-dss.o(.text.launch) refers to lib-comms.o(.text.Comms_CommandValid) for Comms_CommandValid
+    app-dss.o(.text.launch) refers to lib-comms.o(.text.Comms_ArgCompare) for Comms_ArgCompare
+    app-dss.o(.text.launch) refers to app-dss.o(.text.dss_home) for dss_home
+    app-dss.o(.text.launch) refers to lib-comms.o(.text.Comms_ArgScanInt) for Comms_ArgScanInt
+    app-dss.o(.text.launch) refers to lib-comms.o(.text.Comms_BlockingTxString) for Comms_BlockingTxString
+    app-dss.o(.text.launch) refers to app-dss.o(.text.dss_move_to) for dss_move_to
+    app-dss.o(.text.launch) refers to app-dss.o(.text.dss_drill) for dss_drill
+    app-dss.o(.text.launch) refers to app-dss.o(.rodata.str1.1) for [Anonymous Symbol]
+    app-dss.o(.ARM.exidx.text.launch) refers to app-dss.o(.text.launch) for [Anonymous Symbol]
+    app-dss.o(.text.dss_home) refers to lib-limit-switch.o(.text.LMSW_Read) for LMSW_Read
+    app-dss.o(.text.dss_home) refers to lib-comms.o(.text.Comms_BlockingTxString) for Comms_BlockingTxString
+    app-dss.o(.text.dss_home) refers to lib-driver-gpio.o(.text.DriverGPIO_Set1Direction) for DriverGPIO_Set1Direction
+    app-dss.o(.text.dss_home) refers to lib-driver-gpio.o(.text.DriverGPIO_Set1PWM) for DriverGPIO_Set1PWM
+    app-dss.o(.text.dss_home) refers to lib-rcc.o(.text.Sys_BlockingDelayM) for Sys_BlockingDelayM
+    app-dss.o(.text.dss_home) refers to lib-quadrature-enc.o(.text.QEncoder_Reset1) for QEncoder_Reset1
+    app-dss.o(.text.dss_home) refers to app-dss.o(.rodata.str1.1) for [Anonymous Symbol]
+    app-dss.o(.text.dss_home) refers to app-dss.o(.bss.dss_homed) for dss_homed
+    app-dss.o(.ARM.exidx.text.dss_home) refers to app-dss.o(.text.dss_home) for [Anonymous Symbol]
+    app-dss.o(.text.dss_move_to) refers to lib-comms.o(.text.Comms_BlockingTxString) for Comms_BlockingTxString
+    app-dss.o(.text.dss_move_to) refers to lib-quadrature-enc.o(.text.QEncoder_Read1) for QEncoder_Read1
+    app-dss.o(.text.dss_move_to) refers to lib-driver-gpio.o(.text.DriverGPIO_Set1Direction) for DriverGPIO_Set1Direction
+    app-dss.o(.text.dss_move_to) refers to lib-driver-gpio.o(.text.DriverGPIO_Set1PWM) for DriverGPIO_Set1PWM
+    app-dss.o(.text.dss_move_to) refers to lib-rcc.o(.text.Sys_BlockingDelayM) for Sys_BlockingDelayM
+    app-dss.o(.text.dss_move_to) refers to app-dss.o(.bss.dss_homed) for dss_homed
+    app-dss.o(.text.dss_move_to) refers to app-dss.o(.rodata.str1.1) for [Anonymous Symbol]
+    app-dss.o(.ARM.exidx.text.dss_move_to) refers to app-dss.o(.text.dss_move_to) for [Anonymous Symbol]
+    app-dss.o(.text.dss_drill) refers to lib-driver-gpio.o(.text.DriverGPIO_Set2Direction) for DriverGPIO_Set2Direction
+    app-dss.o(.text.dss_drill) refers to lib-driver-gpio.o(.text.DriverGPIO_Set2PWM) for DriverGPIO_Set2PWM
+    app-dss.o(.text.dss_drill) refers to lib-rcc.o(.text.Sys_BlockingDelayM) for Sys_BlockingDelayM
+    app-dss.o(.text.dss_drill) refers to lib-comms.o(.text.Comms_BlockingTxString) for Comms_BlockingTxString
+    app-dss.o(.text.dss_drill) refers to app-dss.o(.bss.dss_drill.prevsign) for [Anonymous Symbol]
+    app-dss.o(.text.dss_drill) refers to app-dss.o(.rodata.str1.1) for [Anonymous Symbol]
+    app-dss.o(.ARM.exidx.text.dss_drill) refers to app-dss.o(.text.dss_drill) for [Anonymous Symbol]
+    lib-rcc.o(.ARM.exidx.text.Sys_ClockInit) refers to lib-rcc.o(.text.Sys_ClockInit) for [Anonymous Symbol]
+    lib-rcc.o(.ARM.exidx.text.Sys_BlockingDelayU) refers to lib-rcc.o(.text.Sys_BlockingDelayU) for [Anonymous Symbol]
+    lib-rcc.o(.text.Sys_BlockingDelayM) refers to lib-rcc.o(.text.Sys_BlockingDelayU) for Sys_BlockingDelayU
+    lib-rcc.o(.ARM.exidx.text.Sys_BlockingDelayM) refers to lib-rcc.o(.text.Sys_BlockingDelayM) for [Anonymous Symbol]
+    lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Init) refers to lib-driver-gpio.o(.text.DriverGPIO_Init) for [Anonymous Symbol]
+    lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_SetEnable) refers to lib-driver-gpio.o(.text.DriverGPIO_SetEnable) for [Anonymous Symbol]
+    lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_SetDrvoff) refers to lib-driver-gpio.o(.text.DriverGPIO_SetDrvoff) for [Anonymous Symbol]
+    lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_HasFault) refers to lib-driver-gpio.o(.text.DriverGPIO_HasFault) for [Anonymous Symbol]
+    lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Set1Direction) refers to lib-driver-gpio.o(.text.DriverGPIO_Set1Direction) for [Anonymous Symbol]
+    lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Set1PWM) refers to lib-driver-gpio.o(.text.DriverGPIO_Set1PWM) for [Anonymous Symbol]
+    lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Set1NSS) refers to lib-driver-gpio.o(.text.DriverGPIO_Set1NSS) for [Anonymous Symbol]
+    lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Set2Direction) refers to lib-driver-gpio.o(.text.DriverGPIO_Set2Direction) for [Anonymous Symbol]
+    lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Set2PWM) refers to lib-driver-gpio.o(.text.DriverGPIO_Set2PWM) for [Anonymous Symbol]
+    lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Set2NSS) refers to lib-driver-gpio.o(.text.DriverGPIO_Set2NSS) for [Anonymous Symbol]
+    lib-driver-spi.o(.ARM.exidx.text.DriverSPI_Init) refers to lib-driver-spi.o(.text.DriverSPI_Init) for [Anonymous Symbol]
+    lib-driver-spi.o(.text.DriverSPI_ReadDev1) refers to lib-driver-gpio.o(.text.DriverGPIO_Set1NSS) for DriverGPIO_Set1NSS
+    lib-driver-spi.o(.ARM.exidx.text.DriverSPI_ReadDev1) refers to lib-driver-spi.o(.text.DriverSPI_ReadDev1) for [Anonymous Symbol]
+    lib-driver-spi.o(.text.DriverSPI_WriteDev1) refers to lib-driver-gpio.o(.text.DriverGPIO_Set1NSS) for DriverGPIO_Set1NSS
+    lib-driver-spi.o(.ARM.exidx.text.DriverSPI_WriteDev1) refers to lib-driver-spi.o(.text.DriverSPI_WriteDev1) for [Anonymous Symbol]
+    lib-driver-spi.o(.text.DriverSPI_ReadDev2) refers to lib-driver-gpio.o(.text.DriverGPIO_Set2NSS) for DriverGPIO_Set2NSS
+    lib-driver-spi.o(.ARM.exidx.text.DriverSPI_ReadDev2) refers to lib-driver-spi.o(.text.DriverSPI_ReadDev2) for [Anonymous Symbol]
+    lib-driver-spi.o(.text.DriverSPI_WriteDev2) refers to lib-driver-gpio.o(.text.DriverGPIO_Set2NSS) for DriverGPIO_Set2NSS
+    lib-driver-spi.o(.ARM.exidx.text.DriverSPI_WriteDev2) refers to lib-driver-spi.o(.text.DriverSPI_WriteDev2) for [Anonymous Symbol]
+    lib-quadrature-enc.o(.text.QEncoder_Init) refers to lib-quadrature-enc.o(.text.__NVIC_EnableIRQ) for __NVIC_EnableIRQ
+    lib-quadrature-enc.o(.ARM.exidx.text.QEncoder_Init) refers to lib-quadrature-enc.o(.text.QEncoder_Init) for [Anonymous Symbol]
+    lib-quadrature-enc.o(.ARM.exidx.text.__NVIC_EnableIRQ) refers to lib-quadrature-enc.o(.text.__NVIC_EnableIRQ) for [Anonymous Symbol]
+    lib-quadrature-enc.o(.text.QEncoder_Reset1) refers to lib-quadrature-enc.o(.bss.QEncoder_Count_1) for QEncoder_Count_1
+    lib-quadrature-enc.o(.ARM.exidx.text.QEncoder_Reset1) refers to lib-quadrature-enc.o(.text.QEncoder_Reset1) for [Anonymous Symbol]
+    lib-quadrature-enc.o(.text.QEncoder_Read1) refers to lib-quadrature-enc.o(.bss.QEncoder_Count_1) for QEncoder_Count_1
+    lib-quadrature-enc.o(.ARM.exidx.text.QEncoder_Read1) refers to lib-quadrature-enc.o(.text.QEncoder_Read1) for [Anonymous Symbol]
+    lib-quadrature-enc.o(.text.TIM1_BRK_UP_TRG_COM_IRQHandler) refers to lib-quadrature-enc.o(.bss.QEncoder_Count_1) for QEncoder_Count_1
+    lib-quadrature-enc.o(.ARM.exidx.text.TIM1_BRK_UP_TRG_COM_IRQHandler) refers to lib-quadrature-enc.o(.text.TIM1_BRK_UP_TRG_COM_IRQHandler) for [Anonymous Symbol]
+    lib-quadrature-enc.o(.text.QEncoder_Reset2) refers to lib-quadrature-enc.o(.bss.QEncoder_Count_2) for QEncoder_Count_2
+    lib-quadrature-enc.o(.ARM.exidx.text.QEncoder_Reset2) refers to lib-quadrature-enc.o(.text.QEncoder_Reset2) for [Anonymous Symbol]
+    lib-quadrature-enc.o(.text.QEncoder_Read2) refers to lib-quadrature-enc.o(.bss.QEncoder_Count_2) for QEncoder_Count_2
+    lib-quadrature-enc.o(.ARM.exidx.text.QEncoder_Read2) refers to lib-quadrature-enc.o(.text.QEncoder_Read2) for [Anonymous Symbol]
+    lib-quadrature-enc.o(.text.TIM3_IRQHandler) refers to lib-quadrature-enc.o(.bss.QEncoder_Count_2) for QEncoder_Count_2
+    lib-quadrature-enc.o(.ARM.exidx.text.TIM3_IRQHandler) refers to lib-quadrature-enc.o(.text.TIM3_IRQHandler) for [Anonymous Symbol]
+    lib-limit-switch.o(.ARM.exidx.text.LMSW_Init) refers to lib-limit-switch.o(.text.LMSW_Init) for [Anonymous Symbol]
+    lib-limit-switch.o(.ARM.exidx.text.LMSW_Read) refers to lib-limit-switch.o(.text.LMSW_Read) for [Anonymous Symbol]
+    lib-limit-switch.o(.ARM.exidx.text.LMSW_ReadAll) refers to lib-limit-switch.o(.text.LMSW_ReadAll) for [Anonymous Symbol]
+    lib-board.o(.ARM.exidx.text.Board_Init) refers to lib-board.o(.text.Board_Init) for [Anonymous Symbol]
+    lib-board.o(.ARM.exidx.text.Board_SetPanicLed) refers to lib-board.o(.text.Board_SetPanicLed) for [Anonymous Symbol]
+    lib-board.o(.ARM.exidx.text.Board_SetRunLed) refers to lib-board.o(.text.Board_SetRunLed) for [Anonymous Symbol]
+    lib-comms.o(.text.Comms_Init) refers to lib-comms.o(.text.__NVIC_EnableIRQ) for __NVIC_EnableIRQ
+    lib-comms.o(.text.Comms_Init) refers to lib-comms.o(.bss.Comms_InternalState) for Comms_InternalState
+    lib-comms.o(.text.Comms_Init) refers to lib-comms.o(.bss.Comms_InternalIndex) for Comms_InternalIndex
+    lib-comms.o(.ARM.exidx.text.Comms_Init) refers to lib-comms.o(.text.Comms_Init) for [Anonymous Symbol]
+    lib-comms.o(.ARM.exidx.text.__NVIC_EnableIRQ) refers to lib-comms.o(.text.__NVIC_EnableIRQ) for [Anonymous Symbol]
+    lib-comms.o(.text.USART1_IRQHandler) refers to lib-comms.o(.text.Comms_InternalHandleRx) for Comms_InternalHandleRx
+    lib-comms.o(.ARM.exidx.text.USART1_IRQHandler) refers to lib-comms.o(.text.USART1_IRQHandler) for [Anonymous Symbol]
+    lib-comms.o(.text.Comms_InternalHandleRx) refers to lib-comms.o(.text.Comms_InternalHandleExec) for Comms_InternalHandleExec
+    lib-comms.o(.text.Comms_InternalHandleRx) refers to lib-comms.o(.bss.Comms_InternalState) for Comms_InternalState
+    lib-comms.o(.text.Comms_InternalHandleRx) refers to lib-comms.o(.bss.Comms_InternalIndex) for Comms_InternalIndex
+    lib-comms.o(.text.Comms_InternalHandleRx) refers to lib-comms.o(.bss.Comms_CommandBuf) for Comms_CommandBuf
+    lib-comms.o(.text.Comms_InternalHandleRx) refers to lib-comms.o(.bss.Comms_Argc) for Comms_Argc
+    lib-comms.o(.ARM.exidx.text.Comms_InternalHandleRx) refers to lib-comms.o(.text.Comms_InternalHandleRx) for [Anonymous Symbol]
+    lib-comms.o(.text.Comms_CommandValid) refers to lib-comms.o(.bss.Comms_Argc) for Comms_Argc
+    lib-comms.o(.ARM.exidx.text.Comms_CommandValid) refers to lib-comms.o(.text.Comms_CommandValid) for [Anonymous Symbol]
+    lib-comms.o(.text.Comms_CommandRetirement) refers to lib-comms.o(.bss.Comms_Argc) for Comms_Argc
+    lib-comms.o(.text.Comms_CommandRetirement) refers to lib-comms.o(.bss.Comms_InternalState) for Comms_InternalState
+    lib-comms.o(.ARM.exidx.text.Comms_CommandRetirement) refers to lib-comms.o(.text.Comms_CommandRetirement) for [Anonymous Symbol]
+    lib-comms.o(.ARM.exidx.text.Comms_BlockingTxString) refers to lib-comms.o(.text.Comms_BlockingTxString) for [Anonymous Symbol]
+    lib-comms.o(.text.Comms_ArgCompare) refers to lib-comms.o(.bss.Comms_Argc) for Comms_Argc
+    lib-comms.o(.text.Comms_ArgCompare) refers to lib-comms.o(.bss.Comms_Argv) for Comms_Argv
+    lib-comms.o(.text.Comms_ArgCompare) refers to lib-comms.o(.bss.Comms_CommandBuf) for Comms_CommandBuf
+    lib-comms.o(.ARM.exidx.text.Comms_ArgCompare) refers to lib-comms.o(.text.Comms_ArgCompare) for [Anonymous Symbol]
+    lib-comms.o(.text.Comms_ArgScanInt) refers to lib-comms.o(.bss.Comms_Argc) for Comms_Argc
+    lib-comms.o(.text.Comms_ArgScanInt) refers to lib-comms.o(.bss.Comms_Argv) for Comms_Argv
+    lib-comms.o(.text.Comms_ArgScanInt) refers to lib-comms.o(.bss.Comms_CommandBuf) for Comms_CommandBuf
+    lib-comms.o(.ARM.exidx.text.Comms_ArgScanInt) refers to lib-comms.o(.text.Comms_ArgScanInt) for [Anonymous Symbol]
+    lib-comms.o(.text.Comms_InternalHandleExec) refers to lib-comms.o(.bss.Comms_InternalIndex) for Comms_InternalIndex
+    lib-comms.o(.text.Comms_InternalHandleExec) refers to lib-comms.o(.bss.Comms_CommandBuf) for Comms_CommandBuf
+    lib-comms.o(.text.Comms_InternalHandleExec) refers to lib-comms.o(.bss.Comms_Argv) for Comms_Argv
+    lib-comms.o(.text.Comms_InternalHandleExec) refers to lib-comms.o(.bss.Comms_Argc) for Comms_Argc
+    lib-comms.o(.ARM.exidx.text.Comms_InternalHandleExec) refers to lib-comms.o(.text.Comms_InternalHandleExec) for [Anonymous Symbol]
+    startup_stm32g030xx.o(RESET) refers to startup_stm32g030xx.o(STACK) for __initial_sp
+    startup_stm32g030xx.o(RESET) refers to startup_stm32g030xx.o(.text) for Reset_Handler
+    startup_stm32g030xx.o(RESET) refers to lib-quadrature-enc.o(.text.TIM1_BRK_UP_TRG_COM_IRQHandler) for TIM1_BRK_UP_TRG_COM_IRQHandler
+    startup_stm32g030xx.o(RESET) refers to lib-quadrature-enc.o(.text.TIM3_IRQHandler) for TIM3_IRQHandler
+    startup_stm32g030xx.o(RESET) refers to lib-comms.o(.text.USART1_IRQHandler) for USART1_IRQHandler
+    startup_stm32g030xx.o(.text) refers to system_stm32g0xx.o(.text.SystemInit) for SystemInit
+    startup_stm32g030xx.o(.text) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    system_stm32g0xx.o(.ARM.exidx.text.SystemInit) refers to system_stm32g0xx.o(.text.SystemInit) for [Anonymous Symbol]
+    system_stm32g0xx.o(.text.SystemCoreClockUpdate) refers to uidiv_div0.o(.text) for __aeabi_uidiv
+    system_stm32g0xx.o(.text.SystemCoreClockUpdate) refers to system_stm32g0xx.o(.data.SystemCoreClock) for SystemCoreClock
+    system_stm32g0xx.o(.text.SystemCoreClockUpdate) refers to system_stm32g0xx.o(.rodata.AHBPrescTable) for AHBPrescTable
+    system_stm32g0xx.o(.ARM.exidx.text.SystemCoreClockUpdate) refers to system_stm32g0xx.o(.text.SystemCoreClockUpdate) for [Anonymous Symbol]
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry7b.o(.ARM.Collect$$$$00000008) for _main_clock
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry8b.o(.ARM.Collect$$$$0000000A) for _main_cpp_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry9a.o(.ARM.Collect$$$$0000000B) for _main_init
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry5.o(.ARM.Collect$$$$00000004) for _main_scatterload
+    entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry2.o(.ARM.Collect$$$$00000001) for _main_stk
+    entry2.o(.ARM.Collect$$$$00000001) refers to entry2.o(.ARM.Collect$$$$00002712) for __lit__00000000
+    entry2.o(.ARM.Collect$$$$00002712) refers to startup_stm32g030xx.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to startup_stm32g030xx.o(STACK) for __initial_sp
+    entry2.o(__vectab_stack_and_reset_area) refers to entry.o(.ARM.Collect$$$$00000000) for __main
+    entry5.o(.ARM.Collect$$$$00000004) refers to init.o(.text) for __scatterload
+    entry9a.o(.ARM.Collect$$$$0000000B) refers to main.o(.text.main) for main
+    entry9b.o(.ARM.Collect$$$$0000000C) refers to main.o(.text.main) for main
+    idiv_div0.o(.text) refers to uidiv_div0.o(.text) for __aeabi_uidivmod
+    init.o(.text) refers to entry5.o(.ARM.Collect$$$$00000004) for __main_after_scatterload
+
+
+==============================================================================
+
+Removing Unused input sections from the image.
+
+    Removing main.o(.text), (0 bytes).
+    Removing main.o(.ARM.exidx.text.main), (8 bytes).
+    Removing main.o(.bss.opa), (4 bytes).
+    Removing main.o(.ARM.use_no_argv), (4 bytes).
+    Removing app-elv.o(.text), (0 bytes).
+    Removing app-dss.o(.text), (0 bytes).
+    Removing app-dss.o(.ARM.exidx.text.launch), (8 bytes).
+    Removing app-dss.o(.ARM.exidx.text.dss_home), (8 bytes).
+    Removing app-dss.o(.ARM.exidx.text.dss_move_to), (8 bytes).
+    Removing app-dss.o(.ARM.exidx.text.dss_drill), (8 bytes).
+    Removing lib-rcc.o(.text), (0 bytes).
+    Removing lib-rcc.o(.ARM.exidx.text.Sys_ClockInit), (8 bytes).
+    Removing lib-rcc.o(.ARM.exidx.text.Sys_BlockingDelayU), (8 bytes).
+    Removing lib-rcc.o(.ARM.exidx.text.Sys_BlockingDelayM), (8 bytes).
+    Removing lib-smart-servo.o(.text), (0 bytes).
+    Removing lib-pwm-servo.o(.text), (0 bytes).
+    Removing lib-driver-gpio.o(.text), (0 bytes).
+    Removing lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Init), (8 bytes).
+    Removing lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_SetEnable), (8 bytes).
+    Removing lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_SetDrvoff), (8 bytes).
+    Removing lib-driver-gpio.o(.text.DriverGPIO_HasFault), (20 bytes).
+    Removing lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_HasFault), (8 bytes).
+    Removing lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Set1Direction), (8 bytes).
+    Removing lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Set1PWM), (8 bytes).
+    Removing lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Set1NSS), (8 bytes).
+    Removing lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Set2Direction), (8 bytes).
+    Removing lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Set2PWM), (8 bytes).
+    Removing lib-driver-gpio.o(.ARM.exidx.text.DriverGPIO_Set2NSS), (8 bytes).
+    Removing lib-driver-spi.o(.text), (0 bytes).
+    Removing lib-driver-spi.o(.ARM.exidx.text.DriverSPI_Init), (8 bytes).
+    Removing lib-driver-spi.o(.text.DriverSPI_ReadDev1), (140 bytes).
+    Removing lib-driver-spi.o(.ARM.exidx.text.DriverSPI_ReadDev1), (8 bytes).
+    Removing lib-driver-spi.o(.ARM.exidx.text.DriverSPI_WriteDev1), (8 bytes).
+    Removing lib-driver-spi.o(.text.DriverSPI_ReadDev2), (140 bytes).
+    Removing lib-driver-spi.o(.ARM.exidx.text.DriverSPI_ReadDev2), (8 bytes).
+    Removing lib-driver-spi.o(.ARM.exidx.text.DriverSPI_WriteDev2), (8 bytes).
+    Removing lib-quadrature-enc.o(.text), (0 bytes).
+    Removing lib-quadrature-enc.o(.ARM.exidx.text.QEncoder_Init), (8 bytes).
+    Removing lib-quadrature-enc.o(.ARM.exidx.text.__NVIC_EnableIRQ), (8 bytes).
+    Removing lib-quadrature-enc.o(.ARM.exidx.text.QEncoder_Reset1), (8 bytes).
+    Removing lib-quadrature-enc.o(.ARM.exidx.text.QEncoder_Read1), (8 bytes).
+    Removing lib-quadrature-enc.o(.ARM.exidx.text.TIM1_BRK_UP_TRG_COM_IRQHandler), (8 bytes).
+    Removing lib-quadrature-enc.o(.text.QEncoder_Reset2), (48 bytes).
+    Removing lib-quadrature-enc.o(.ARM.exidx.text.QEncoder_Reset2), (8 bytes).
+    Removing lib-quadrature-enc.o(.text.QEncoder_Read2), (80 bytes).
+    Removing lib-quadrature-enc.o(.ARM.exidx.text.QEncoder_Read2), (8 bytes).
+    Removing lib-quadrature-enc.o(.ARM.exidx.text.TIM3_IRQHandler), (8 bytes).
+    Removing lib-limit-switch.o(.text), (0 bytes).
+    Removing lib-limit-switch.o(.ARM.exidx.text.LMSW_Init), (8 bytes).
+    Removing lib-limit-switch.o(.ARM.exidx.text.LMSW_Read), (8 bytes).
+    Removing lib-limit-switch.o(.text.LMSW_ReadAll), (16 bytes).
+    Removing lib-limit-switch.o(.ARM.exidx.text.LMSW_ReadAll), (8 bytes).
+    Removing lib-board.o(.text), (0 bytes).
+    Removing lib-board.o(.ARM.exidx.text.Board_Init), (8 bytes).
+    Removing lib-board.o(.ARM.exidx.text.Board_SetPanicLed), (8 bytes).
+    Removing lib-board.o(.ARM.exidx.text.Board_SetRunLed), (8 bytes).
+    Removing lib-comms.o(.text), (0 bytes).
+    Removing lib-comms.o(.ARM.exidx.text.Comms_Init), (8 bytes).
+    Removing lib-comms.o(.ARM.exidx.text.__NVIC_EnableIRQ), (8 bytes).
+    Removing lib-comms.o(.ARM.exidx.text.USART1_IRQHandler), (8 bytes).
+    Removing lib-comms.o(.ARM.exidx.text.Comms_InternalHandleRx), (8 bytes).
+    Removing lib-comms.o(.ARM.exidx.text.Comms_CommandValid), (8 bytes).
+    Removing lib-comms.o(.ARM.exidx.text.Comms_CommandRetirement), (8 bytes).
+    Removing lib-comms.o(.ARM.exidx.text.Comms_BlockingTxString), (8 bytes).
+    Removing lib-comms.o(.ARM.exidx.text.Comms_ArgCompare), (8 bytes).
+    Removing lib-comms.o(.ARM.exidx.text.Comms_ArgScanInt), (8 bytes).
+    Removing lib-comms.o(.ARM.exidx.text.Comms_InternalHandleExec), (8 bytes).
+    Removing startup_stm32g030xx.o(HEAP), (512 bytes).
+    Removing system_stm32g0xx.o(.text), (0 bytes).
+    Removing system_stm32g0xx.o(.ARM.exidx.text.SystemInit), (8 bytes).
+    Removing system_stm32g0xx.o(.text.SystemCoreClockUpdate), (380 bytes).
+    Removing system_stm32g0xx.o(.ARM.exidx.text.SystemCoreClockUpdate), (8 bytes).
+    Removing system_stm32g0xx.o(.data.SystemCoreClock), (4 bytes).
+    Removing system_stm32g0xx.o(.rodata.AHBPrescTable), (64 bytes).
+    Removing system_stm32g0xx.o(.rodata.APBPrescTable), (32 bytes).
+
+75 unused section(s) (total 1836 bytes) removed from the image.
+
+==============================================================================
+
+Image Symbol Table
+
+    Local Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    ../clib/division.s                       0x00000000   Number         0  aeabi_sdiv.o ABSOLUTE
+    ../clib/division.s                       0x00000000   Number         0  aeabi_sdiv_div0.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uidiv_div0.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  idiv_div0.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  idiv0.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    RTE/Device/STM32G030C8Tx/startup_stm32g030xx.s 0x00000000   Number         0  startup_stm32g030xx.o ABSOLUTE
+    app-dss.c                                0x00000000   Number         0  app-dss.o ABSOLUTE
+    app-elv.c                                0x00000000   Number         0  app-elv.o ABSOLUTE
+    dc.s                                     0x00000000   Number         0  dc.o ABSOLUTE
+    handlers.s                               0x00000000   Number         0  handlers.o ABSOLUTE
+    init.s                                   0x00000000   Number         0  init.o ABSOLUTE
+    lib-board.c                              0x00000000   Number         0  lib-board.o ABSOLUTE
+    lib-comms.c                              0x00000000   Number         0  lib-comms.o ABSOLUTE
+    lib-driver-gpio.c                        0x00000000   Number         0  lib-driver-gpio.o ABSOLUTE
+    lib-driver-spi.c                         0x00000000   Number         0  lib-driver-spi.o ABSOLUTE
+    lib-limit-switch.c                       0x00000000   Number         0  lib-limit-switch.o ABSOLUTE
+    lib-pwm-servo.c                          0x00000000   Number         0  lib-pwm-servo.o ABSOLUTE
+    lib-quadrature-enc.c                     0x00000000   Number         0  lib-quadrature-enc.o ABSOLUTE
+    lib-rcc.c                                0x00000000   Number         0  lib-rcc.o ABSOLUTE
+    lib-smart-servo.c                        0x00000000   Number         0  lib-smart-servo.o ABSOLUTE
+    main.c                                   0x00000000   Number         0  main.o ABSOLUTE
+    system_stm32g0xx.c                       0x00000000   Number         0  system_stm32g0xx.o ABSOLUTE
+    RESET                                    0x08000000   Section      192  startup_stm32g030xx.o(RESET)
+    .ARM.Collect$$$$00000000                 0x080000c0   Section        0  entry.o(.ARM.Collect$$$$00000000)
+    .ARM.Collect$$$$00000001                 0x080000c0   Section        4  entry2.o(.ARM.Collect$$$$00000001)
+    .ARM.Collect$$$$00000004                 0x080000c4   Section        4  entry5.o(.ARM.Collect$$$$00000004)
+    .ARM.Collect$$$$00000008                 0x080000c8   Section        0  entry7b.o(.ARM.Collect$$$$00000008)
+    .ARM.Collect$$$$0000000A                 0x080000c8   Section        0  entry8b.o(.ARM.Collect$$$$0000000A)
+    .ARM.Collect$$$$0000000B                 0x080000c8   Section        8  entry9a.o(.ARM.Collect$$$$0000000B)
+    __lit__00000000                          0x080000d0   Data           4  entry2.o(.ARM.Collect$$$$00002712)
+    .ARM.Collect$$$$0000000D                 0x080000d0   Section        0  entry10a.o(.ARM.Collect$$$$0000000D)
+    .ARM.Collect$$$$0000000F                 0x080000d0   Section        0  entry11a.o(.ARM.Collect$$$$0000000F)
+    .ARM.Collect$$$$00002712                 0x080000d0   Section        4  entry2.o(.ARM.Collect$$$$00002712)
+    .text                                    0x080000d4   Section       28  startup_stm32g030xx.o(.text)
+    .text                                    0x080000f0   Section       48  init.o(.text)
+    [Anonymous Symbol]                       0x08000120   Section        0  lib-board.o(.text.Board_Init)
+    __arm_cp.0_0                             0x0800014c   Number         4  lib-board.o(.text.Board_Init)
+    __arm_cp.0_2                             0x08000150   Number         4  lib-board.o(.text.Board_Init)
+    [Anonymous Symbol]                       0x08000154   Section        0  lib-board.o(.text.Board_SetPanicLed)
+    [Anonymous Symbol]                       0x08000174   Section        0  lib-board.o(.text.Board_SetRunLed)
+    __arm_cp.2_0                             0x08000194   Number         4  lib-board.o(.text.Board_SetRunLed)
+    __arm_cp.2_1                             0x08000198   Number         4  lib-board.o(.text.Board_SetRunLed)
+    [Anonymous Symbol]                       0x0800019c   Section        0  lib-comms.o(.text.Comms_ArgCompare)
+    [Anonymous Symbol]                       0x0800023c   Section        0  lib-comms.o(.text.Comms_ArgScanInt)
+    [Anonymous Symbol]                       0x08000330   Section        0  lib-comms.o(.text.Comms_BlockingTxString)
+    __arm_cp.6_0                             0x08000380   Number         4  lib-comms.o(.text.Comms_BlockingTxString)
+    __arm_cp.6_1                             0x08000384   Number         4  lib-comms.o(.text.Comms_BlockingTxString)
+    [Anonymous Symbol]                       0x08000388   Section        0  lib-comms.o(.text.Comms_CommandRetirement)
+    [Anonymous Symbol]                       0x08000394   Section        0  lib-comms.o(.text.Comms_CommandValid)
+    [Anonymous Symbol]                       0x080003a0   Section        0  lib-comms.o(.text.Comms_Init)
+    __arm_cp.0_2                             0x08000450   Number         4  lib-comms.o(.text.Comms_Init)
+    __arm_cp.0_3                             0x08000454   Number         4  lib-comms.o(.text.Comms_Init)
+    __arm_cp.0_4                             0x08000458   Number         4  lib-comms.o(.text.Comms_Init)
+    __arm_cp.0_5                             0x0800045c   Number         4  lib-comms.o(.text.Comms_Init)
+    __arm_cp.0_7                             0x08000460   Number         4  lib-comms.o(.text.Comms_Init)
+    __arm_cp.0_8                             0x08000464   Number         4  lib-comms.o(.text.Comms_Init)
+    __arm_cp.0_9                             0x08000468   Number         4  lib-comms.o(.text.Comms_Init)
+    __arm_cp.0_10                            0x0800046c   Number         4  lib-comms.o(.text.Comms_Init)
+    __arm_cp.0_11                            0x08000470   Number         4  lib-comms.o(.text.Comms_Init)
+    __arm_cp.0_12                            0x08000474   Number         4  lib-comms.o(.text.Comms_Init)
+    Comms_InternalHandleExec                 0x08000479   Thumb Code   236  lib-comms.o(.text.Comms_InternalHandleExec)
+    [Anonymous Symbol]                       0x08000478   Section        0  lib-comms.o(.text.Comms_InternalHandleExec)
+    __arm_cp.9_1                             0x08000564   Number         4  lib-comms.o(.text.Comms_InternalHandleExec)
+    __arm_cp.9_2                             0x08000568   Number         4  lib-comms.o(.text.Comms_InternalHandleExec)
+    __arm_cp.9_3                             0x0800056c   Number         4  lib-comms.o(.text.Comms_InternalHandleExec)
+    Comms_InternalHandleRx                   0x08000571   Thumb Code   148  lib-comms.o(.text.Comms_InternalHandleRx)
+    [Anonymous Symbol]                       0x08000570   Section        0  lib-comms.o(.text.Comms_InternalHandleRx)
+    __arm_cp.3_0                             0x08000604   Number         4  lib-comms.o(.text.Comms_InternalHandleRx)
+    __arm_cp.3_1                             0x08000608   Number         4  lib-comms.o(.text.Comms_InternalHandleRx)
+    __arm_cp.3_2                             0x0800060c   Number         4  lib-comms.o(.text.Comms_InternalHandleRx)
+    __arm_cp.3_3                             0x08000610   Number         4  lib-comms.o(.text.Comms_InternalHandleRx)
+    [Anonymous Symbol]                       0x08000614   Section        0  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_2                             0x08000720   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_4                             0x08000724   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_5                             0x08000728   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_6                             0x0800072c   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_8                             0x08000730   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_9                             0x08000734   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_10                            0x08000738   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_11                            0x0800073c   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_12                            0x08000740   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_13                            0x08000744   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_14                            0x08000748   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_17                            0x0800074c   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_18                            0x08000750   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_19                            0x08000754   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_20                            0x08000758   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_21                            0x0800075c   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_22                            0x08000760   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_23                            0x08000764   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_24                            0x08000768   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_25                            0x0800076c   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_26                            0x08000770   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_27                            0x08000774   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    __arm_cp.0_28                            0x08000778   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    [Anonymous Symbol]                       0x0800077c   Section        0  lib-driver-gpio.o(.text.DriverGPIO_Set1Direction)
+    [Anonymous Symbol]                       0x0800079c   Section        0  lib-driver-gpio.o(.text.DriverGPIO_Set1NSS)
+    [Anonymous Symbol]                       0x080007c0   Section        0  lib-driver-gpio.o(.text.DriverGPIO_Set1PWM)
+    __arm_cp.5_1                             0x080007f0   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Set1PWM)
+    [Anonymous Symbol]                       0x080007f4   Section        0  lib-driver-gpio.o(.text.DriverGPIO_Set2Direction)
+    [Anonymous Symbol]                       0x08000814   Section        0  lib-driver-gpio.o(.text.DriverGPIO_Set2NSS)
+    __arm_cp.9_0                             0x08000838   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Set2NSS)
+    __arm_cp.9_1                             0x0800083c   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Set2NSS)
+    [Anonymous Symbol]                       0x08000840   Section        0  lib-driver-gpio.o(.text.DriverGPIO_Set2PWM)
+    __arm_cp.8_0                             0x08000870   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Set2PWM)
+    __arm_cp.8_1                             0x08000874   Number         4  lib-driver-gpio.o(.text.DriverGPIO_Set2PWM)
+    [Anonymous Symbol]                       0x08000878   Section        0  lib-driver-gpio.o(.text.DriverGPIO_SetDrvoff)
+    [Anonymous Symbol]                       0x08000898   Section        0  lib-driver-gpio.o(.text.DriverGPIO_SetEnable)
+    __arm_cp.1_0                             0x080008d0   Number         4  lib-driver-gpio.o(.text.DriverGPIO_SetEnable)
+    __arm_cp.1_1                             0x080008d4   Number         4  lib-driver-gpio.o(.text.DriverGPIO_SetEnable)
+    __arm_cp.1_2                             0x080008d8   Number         4  lib-driver-gpio.o(.text.DriverGPIO_SetEnable)
+    __arm_cp.1_3                             0x080008dc   Number         4  lib-driver-gpio.o(.text.DriverGPIO_SetEnable)
+    [Anonymous Symbol]                       0x080008e0   Section        0  lib-driver-spi.o(.text.DriverSPI_Init)
+    __arm_cp.0_0                             0x08000920   Number         4  lib-driver-spi.o(.text.DriverSPI_Init)
+    __arm_cp.0_1                             0x08000924   Number         4  lib-driver-spi.o(.text.DriverSPI_Init)
+    __arm_cp.0_2                             0x08000928   Number         4  lib-driver-spi.o(.text.DriverSPI_Init)
+    __arm_cp.0_3                             0x0800092c   Number         4  lib-driver-spi.o(.text.DriverSPI_Init)
+    __arm_cp.0_4                             0x08000930   Number         4  lib-driver-spi.o(.text.DriverSPI_Init)
+    __arm_cp.0_6                             0x08000934   Number         4  lib-driver-spi.o(.text.DriverSPI_Init)
+    __arm_cp.0_7                             0x08000938   Number         4  lib-driver-spi.o(.text.DriverSPI_Init)
+    __arm_cp.0_8                             0x0800093c   Number         4  lib-driver-spi.o(.text.DriverSPI_Init)
+    [Anonymous Symbol]                       0x08000940   Section        0  lib-driver-spi.o(.text.DriverSPI_WriteDev1)
+    [Anonymous Symbol]                       0x080009c0   Section        0  lib-driver-spi.o(.text.DriverSPI_WriteDev2)
+    __arm_cp.4_0                             0x08000a40   Number         4  lib-driver-spi.o(.text.DriverSPI_WriteDev2)
+    __arm_cp.4_1                             0x08000a44   Number         4  lib-driver-spi.o(.text.DriverSPI_WriteDev2)
+    [Anonymous Symbol]                       0x08000a48   Section        0  lib-limit-switch.o(.text.LMSW_Init)
+    __arm_cp.0_0                             0x08000a54   Number         4  lib-limit-switch.o(.text.LMSW_Init)
+    [Anonymous Symbol]                       0x08000a58   Section        0  lib-limit-switch.o(.text.LMSW_Read)
+    __arm_cp.1_0                             0x08000a90   Number         4  lib-limit-switch.o(.text.LMSW_Read)
+    [Anonymous Symbol]                       0x08000a94   Section        0  lib-quadrature-enc.o(.text.QEncoder_Init)
+    __arm_cp.0_0                             0x08000b44   Number         4  lib-quadrature-enc.o(.text.QEncoder_Init)
+    __arm_cp.0_1                             0x08000b48   Number         4  lib-quadrature-enc.o(.text.QEncoder_Init)
+    __arm_cp.0_2                             0x08000b4c   Number         4  lib-quadrature-enc.o(.text.QEncoder_Init)
+    __arm_cp.0_3                             0x08000b50   Number         4  lib-quadrature-enc.o(.text.QEncoder_Init)
+    __arm_cp.0_5                             0x08000b54   Number         4  lib-quadrature-enc.o(.text.QEncoder_Init)
+    __arm_cp.0_7                             0x08000b58   Number         4  lib-quadrature-enc.o(.text.QEncoder_Init)
+    __arm_cp.0_8                             0x08000b5c   Number         4  lib-quadrature-enc.o(.text.QEncoder_Init)
+    __arm_cp.0_9                             0x08000b60   Number         4  lib-quadrature-enc.o(.text.QEncoder_Init)
+    __arm_cp.0_10                            0x08000b64   Number         4  lib-quadrature-enc.o(.text.QEncoder_Init)
+    __arm_cp.0_11                            0x08000b68   Number         4  lib-quadrature-enc.o(.text.QEncoder_Init)
+    __arm_cp.0_13                            0x08000b6c   Number         4  lib-quadrature-enc.o(.text.QEncoder_Init)
+    [Anonymous Symbol]                       0x08000b70   Section        0  lib-quadrature-enc.o(.text.QEncoder_Read1)
+    [Anonymous Symbol]                       0x08000bb8   Section        0  lib-quadrature-enc.o(.text.QEncoder_Reset1)
+    __arm_cp.2_1                             0x08000bd8   Number         4  lib-quadrature-enc.o(.text.QEncoder_Reset1)
+    [Anonymous Symbol]                       0x08000bdc   Section        0  lib-rcc.o(.text.Sys_BlockingDelayM)
+    [Anonymous Symbol]                       0x08000c08   Section        0  lib-rcc.o(.text.Sys_BlockingDelayU)
+    __arm_cp.1_0                             0x08000c3c   Number         4  lib-rcc.o(.text.Sys_BlockingDelayU)
+    __arm_cp.1_1                             0x08000c40   Number         4  lib-rcc.o(.text.Sys_BlockingDelayU)
+    __arm_cp.1_2                             0x08000c44   Number         4  lib-rcc.o(.text.Sys_BlockingDelayU)
+    [Anonymous Symbol]                       0x08000c48   Section        0  lib-rcc.o(.text.Sys_ClockInit)
+    __arm_cp.0_0                             0x08000cec   Number         4  lib-rcc.o(.text.Sys_ClockInit)
+    __arm_cp.0_1                             0x08000cf0   Number         4  lib-rcc.o(.text.Sys_ClockInit)
+    __arm_cp.0_2                             0x08000cf4   Number         4  lib-rcc.o(.text.Sys_ClockInit)
+    __arm_cp.0_3                             0x08000cf8   Number         4  lib-rcc.o(.text.Sys_ClockInit)
+    __arm_cp.0_4                             0x08000cfc   Number         4  lib-rcc.o(.text.Sys_ClockInit)
+    __arm_cp.0_5                             0x08000d00   Number         4  lib-rcc.o(.text.Sys_ClockInit)
+    __arm_cp.0_6                             0x08000d04   Number         4  lib-rcc.o(.text.Sys_ClockInit)
+    __arm_cp.0_7                             0x08000d08   Number         4  lib-rcc.o(.text.Sys_ClockInit)
+    __arm_cp.0_8                             0x08000d0c   Number         4  lib-rcc.o(.text.Sys_ClockInit)
+    __arm_cp.0_9                             0x08000d10   Number         4  lib-rcc.o(.text.Sys_ClockInit)
+    [Anonymous Symbol]                       0x08000d14   Section        0  system_stm32g0xx.o(.text.SystemInit)
+    [Anonymous Symbol]                       0x08000d18   Section        0  lib-quadrature-enc.o(.text.TIM1_BRK_UP_TRG_COM_IRQHandler)
+    __arm_cp.4_0                             0x08000d40   Number         4  lib-quadrature-enc.o(.text.TIM1_BRK_UP_TRG_COM_IRQHandler)
+    __arm_cp.4_1                             0x08000d44   Number         4  lib-quadrature-enc.o(.text.TIM1_BRK_UP_TRG_COM_IRQHandler)
+    __arm_cp.4_2                             0x08000d48   Number         4  lib-quadrature-enc.o(.text.TIM1_BRK_UP_TRG_COM_IRQHandler)
+    [Anonymous Symbol]                       0x08000d4c   Section        0  lib-quadrature-enc.o(.text.TIM3_IRQHandler)
+    __arm_cp.7_0                             0x08000d74   Number         4  lib-quadrature-enc.o(.text.TIM3_IRQHandler)
+    __arm_cp.7_1                             0x08000d78   Number         4  lib-quadrature-enc.o(.text.TIM3_IRQHandler)
+    __arm_cp.7_2                             0x08000d7c   Number         4  lib-quadrature-enc.o(.text.TIM3_IRQHandler)
+    [Anonymous Symbol]                       0x08000d80   Section        0  lib-comms.o(.text.USART1_IRQHandler)
+    __arm_cp.2_0                             0x08000dc0   Number         4  lib-comms.o(.text.USART1_IRQHandler)
+    __arm_cp.2_1                             0x08000dc4   Number         4  lib-comms.o(.text.USART1_IRQHandler)
+    __arm_cp.2_2                             0x08000dc8   Number         4  lib-comms.o(.text.USART1_IRQHandler)
+    __arm_cp.2_3                             0x08000dcc   Number         4  lib-comms.o(.text.USART1_IRQHandler)
+    __NVIC_EnableIRQ                         0x08000dd1   Thumb Code    40  lib-quadrature-enc.o(.text.__NVIC_EnableIRQ)
+    [Anonymous Symbol]                       0x08000dd0   Section        0  lib-quadrature-enc.o(.text.__NVIC_EnableIRQ)
+    __NVIC_EnableIRQ                         0x08000df9   Thumb Code    40  lib-comms.o(.text.__NVIC_EnableIRQ)
+    [Anonymous Symbol]                       0x08000df8   Section        0  lib-comms.o(.text.__NVIC_EnableIRQ)
+    __arm_cp.1_0                             0x08000e20   Number         4  lib-comms.o(.text.__NVIC_EnableIRQ)
+    [Anonymous Symbol]                       0x08000e24   Section        0  app-dss.o(.text.dss_drill)
+    __arm_cp.3_0                             0x08000ea0   Number         4  app-dss.o(.text.dss_drill)
+    __arm_cp.3_1                             0x08000ea4   Number         4  app-dss.o(.text.dss_drill)
+    [Anonymous Symbol]                       0x08000ea8   Section        0  app-dss.o(.text.dss_home)
+    __arm_cp.1_0                             0x08000f6c   Number         4  app-dss.o(.text.dss_home)
+    __arm_cp.1_1                             0x08000f70   Number         4  app-dss.o(.text.dss_home)
+    __arm_cp.1_2                             0x08000f74   Number         4  app-dss.o(.text.dss_home)
+    __arm_cp.1_4                             0x08000f78   Number         4  app-dss.o(.text.dss_home)
+    [Anonymous Symbol]                       0x08000f7c   Section        0  app-dss.o(.text.dss_move_to)
+    __arm_cp.2_0                             0x08001060   Number         4  app-dss.o(.text.dss_move_to)
+    __arm_cp.2_1                             0x08001064   Number         4  app-dss.o(.text.dss_move_to)
+    __arm_cp.2_2                             0x08001068   Number         4  app-dss.o(.text.dss_move_to)
+    __arm_cp.2_3                             0x0800106c   Number         4  app-dss.o(.text.dss_move_to)
+    __arm_cp.2_4                             0x08001070   Number         4  app-dss.o(.text.dss_move_to)
+    __arm_cp.2_5                             0x08001074   Number         4  app-dss.o(.text.dss_move_to)
+    __arm_cp.2_6                             0x08001078   Number         4  app-dss.o(.text.dss_move_to)
+    __arm_cp.2_7                             0x0800107c   Number         4  app-dss.o(.text.dss_move_to)
+    [Anonymous Symbol]                       0x08001080   Section        0  app-dss.o(.text.launch)
+    __arm_cp.0_0                             0x0800118c   Number         4  app-dss.o(.text.launch)
+    __arm_cp.0_1                             0x08001190   Number         4  app-dss.o(.text.launch)
+    __arm_cp.0_2                             0x08001194   Number         4  app-dss.o(.text.launch)
+    __arm_cp.0_3                             0x08001198   Number         4  app-dss.o(.text.launch)
+    __arm_cp.0_4                             0x0800119c   Number         4  app-dss.o(.text.launch)
+    __arm_cp.0_5                             0x080011a0   Number         4  app-dss.o(.text.launch)
+    [Anonymous Symbol]                       0x080011a4   Section        0  main.o(.text.main)
+    i.__scatterload_copy                     0x080011c6   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x080011d4   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x080011d6   Section       14  handlers.o(i.__scatterload_zeroinit)
+    [Anonymous Symbol]                       0x080011e4   Section        0  app-dss.o(.rodata.str1.1)
+    dss_drill.prevsign                       0x20000058   Data           1  app-dss.o(.bss.dss_drill.prevsign)
+    [Anonymous Symbol]                       0x20000058   Section        0  app-dss.o(.bss.dss_drill.prevsign)
+    STACK                                    0x20000060   Section     1024  startup_stm32g030xx.o(STACK)
+
+    Global Symbols
+
+    Symbol Name                              Value     Ov Type        Size  Object(Section)
+
+    BuildAttributes$$THM_ISAv3M$S$PE$A:L22$X:L11$S22$IEEE1$IW$~IW$USESV6$~STKCKD$USESV7$~SHL$OSPACE$EBA8$MICROLIB$REQ8$PRES8$EABIv2 0x00000000   Number         0  anon$$obj.o ABSOLUTE
+    __cpp_initialize__aeabi_                  - Undefined Weak Reference
+    __cxa_finalize                            - Undefined Weak Reference
+    __decompress                              - Undefined Weak Reference
+    _clock_init                               - Undefined Weak Reference
+    _microlib_exit                            - Undefined Weak Reference
+    __Vectors_Size                           0x000000c0   Number         0  startup_stm32g030xx.o ABSOLUTE
+    __Vectors                                0x08000000   Data           4  startup_stm32g030xx.o(RESET)
+    __Vectors_End                            0x080000c0   Data           0  startup_stm32g030xx.o(RESET)
+    __main                                   0x080000c1   Thumb Code     0  entry.o(.ARM.Collect$$$$00000000)
+    _main_stk                                0x080000c1   Thumb Code     0  entry2.o(.ARM.Collect$$$$00000001)
+    _main_scatterload                        0x080000c5   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    __main_after_scatterload                 0x080000c9   Thumb Code     0  entry5.o(.ARM.Collect$$$$00000004)
+    _main_clock                              0x080000c9   Thumb Code     0  entry7b.o(.ARM.Collect$$$$00000008)
+    _main_cpp_init                           0x080000c9   Thumb Code     0  entry8b.o(.ARM.Collect$$$$0000000A)
+    _main_init                               0x080000c9   Thumb Code     0  entry9a.o(.ARM.Collect$$$$0000000B)
+    __rt_final_cpp                           0x080000d1   Thumb Code     0  entry10a.o(.ARM.Collect$$$$0000000D)
+    __rt_final_exit                          0x080000d1   Thumb Code     0  entry11a.o(.ARM.Collect$$$$0000000F)
+    Reset_Handler                            0x080000d5   Thumb Code     8  startup_stm32g030xx.o(.text)
+    NMI_Handler                              0x080000dd   Thumb Code     2  startup_stm32g030xx.o(.text)
+    HardFault_Handler                        0x080000df   Thumb Code     2  startup_stm32g030xx.o(.text)
+    SVC_Handler                              0x080000e1   Thumb Code     2  startup_stm32g030xx.o(.text)
+    PendSV_Handler                           0x080000e3   Thumb Code     2  startup_stm32g030xx.o(.text)
+    SysTick_Handler                          0x080000e5   Thumb Code     2  startup_stm32g030xx.o(.text)
+    ADC1_IRQHandler                          0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    DMA1_Ch4_5_DMAMUX1_OVR_IRQHandler        0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    DMA1_Channel1_IRQHandler                 0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    DMA1_Channel2_3_IRQHandler               0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    EXTI0_1_IRQHandler                       0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    EXTI2_3_IRQHandler                       0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    EXTI4_15_IRQHandler                      0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    FLASH_IRQHandler                         0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    I2C1_IRQHandler                          0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    I2C2_IRQHandler                          0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    RCC_IRQHandler                           0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    RTC_TAMP_IRQHandler                      0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    SPI1_IRQHandler                          0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    SPI2_IRQHandler                          0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    TIM14_IRQHandler                         0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    TIM16_IRQHandler                         0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    TIM17_IRQHandler                         0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    TIM1_CC_IRQHandler                       0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    USART2_IRQHandler                        0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    WWDG_IRQHandler                          0x080000e7   Thumb Code     0  startup_stm32g030xx.o(.text)
+    __scatterload                            0x080000f1   Thumb Code    38  init.o(.text)
+    __scatterload_rt2                        0x080000f1   Thumb Code     0  init.o(.text)
+    Board_Init                               0x08000121   Thumb Code    44  lib-board.o(.text.Board_Init)
+    Board_SetPanicLed                        0x08000155   Thumb Code    32  lib-board.o(.text.Board_SetPanicLed)
+    Board_SetRunLed                          0x08000175   Thumb Code    32  lib-board.o(.text.Board_SetRunLed)
+    Comms_ArgCompare                         0x0800019d   Thumb Code   160  lib-comms.o(.text.Comms_ArgCompare)
+    Comms_ArgScanInt                         0x0800023d   Thumb Code   244  lib-comms.o(.text.Comms_ArgScanInt)
+    Comms_BlockingTxString                   0x08000331   Thumb Code    80  lib-comms.o(.text.Comms_BlockingTxString)
+    Comms_CommandRetirement                  0x08000389   Thumb Code    12  lib-comms.o(.text.Comms_CommandRetirement)
+    Comms_CommandValid                       0x08000395   Thumb Code    12  lib-comms.o(.text.Comms_CommandValid)
+    Comms_Init                               0x080003a1   Thumb Code   176  lib-comms.o(.text.Comms_Init)
+    DriverGPIO_Init                          0x08000615   Thumb Code   268  lib-driver-gpio.o(.text.DriverGPIO_Init)
+    DriverGPIO_Set1Direction                 0x0800077d   Thumb Code    32  lib-driver-gpio.o(.text.DriverGPIO_Set1Direction)
+    DriverGPIO_Set1NSS                       0x0800079d   Thumb Code    36  lib-driver-gpio.o(.text.DriverGPIO_Set1NSS)
+    DriverGPIO_Set1PWM                       0x080007c1   Thumb Code    48  lib-driver-gpio.o(.text.DriverGPIO_Set1PWM)
+    DriverGPIO_Set2Direction                 0x080007f5   Thumb Code    32  lib-driver-gpio.o(.text.DriverGPIO_Set2Direction)
+    DriverGPIO_Set2NSS                       0x08000815   Thumb Code    36  lib-driver-gpio.o(.text.DriverGPIO_Set2NSS)
+    DriverGPIO_Set2PWM                       0x08000841   Thumb Code    48  lib-driver-gpio.o(.text.DriverGPIO_Set2PWM)
+    DriverGPIO_SetDrvoff                     0x08000879   Thumb Code    32  lib-driver-gpio.o(.text.DriverGPIO_SetDrvoff)
+    DriverGPIO_SetEnable                     0x08000899   Thumb Code    56  lib-driver-gpio.o(.text.DriverGPIO_SetEnable)
+    DriverSPI_Init                           0x080008e1   Thumb Code    64  lib-driver-spi.o(.text.DriverSPI_Init)
+    DriverSPI_WriteDev1                      0x08000941   Thumb Code   128  lib-driver-spi.o(.text.DriverSPI_WriteDev1)
+    DriverSPI_WriteDev2                      0x080009c1   Thumb Code   128  lib-driver-spi.o(.text.DriverSPI_WriteDev2)
+    LMSW_Init                                0x08000a49   Thumb Code    12  lib-limit-switch.o(.text.LMSW_Init)
+    LMSW_Read                                0x08000a59   Thumb Code    56  lib-limit-switch.o(.text.LMSW_Read)
+    QEncoder_Init                            0x08000a95   Thumb Code   176  lib-quadrature-enc.o(.text.QEncoder_Init)
+    QEncoder_Read1                           0x08000b71   Thumb Code    72  lib-quadrature-enc.o(.text.QEncoder_Read1)
+    QEncoder_Reset1                          0x08000bb9   Thumb Code    32  lib-quadrature-enc.o(.text.QEncoder_Reset1)
+    Sys_BlockingDelayM                       0x08000bdd   Thumb Code    44  lib-rcc.o(.text.Sys_BlockingDelayM)
+    Sys_BlockingDelayU                       0x08000c09   Thumb Code    52  lib-rcc.o(.text.Sys_BlockingDelayU)
+    Sys_ClockInit                            0x08000c49   Thumb Code   164  lib-rcc.o(.text.Sys_ClockInit)
+    SystemInit                               0x08000d15   Thumb Code     2  system_stm32g0xx.o(.text.SystemInit)
+    TIM1_BRK_UP_TRG_COM_IRQHandler           0x08000d19   Thumb Code    40  lib-quadrature-enc.o(.text.TIM1_BRK_UP_TRG_COM_IRQHandler)
+    TIM3_IRQHandler                          0x08000d4d   Thumb Code    40  lib-quadrature-enc.o(.text.TIM3_IRQHandler)
+    USART1_IRQHandler                        0x08000d81   Thumb Code    64  lib-comms.o(.text.USART1_IRQHandler)
+    dss_drill                                0x08000e25   Thumb Code   124  app-dss.o(.text.dss_drill)
+    dss_home                                 0x08000ea9   Thumb Code   196  app-dss.o(.text.dss_home)
+    dss_move_to                              0x08000f7d   Thumb Code   228  app-dss.o(.text.dss_move_to)
+    launch                                   0x08001081   Thumb Code   268  app-dss.o(.text.launch)
+    main                                     0x080011a5   Thumb Code    34  main.o(.text.main)
+    __scatterload_copy                       0x080011c7   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x080011d5   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x080011d7   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    Region$$Table$$Base                      0x08001334   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08001344   Number         0  anon$$obj.o(Region$$Table)
+    Comms_Argc                               0x20000000   Data           1  lib-comms.o(.bss.Comms_Argc)
+    Comms_Argv                               0x20000001   Data          16  lib-comms.o(.bss.Comms_Argv)
+    Comms_CommandBuf                         0x20000011   Data          64  lib-comms.o(.bss.Comms_CommandBuf)
+    Comms_InternalIndex                      0x20000051   Data           1  lib-comms.o(.bss.Comms_InternalIndex)
+    Comms_InternalState                      0x20000052   Data           1  lib-comms.o(.bss.Comms_InternalState)
+    QEncoder_Count_1                         0x20000054   Data           2  lib-quadrature-enc.o(.bss.QEncoder_Count_1)
+    QEncoder_Count_2                         0x20000056   Data           2  lib-quadrature-enc.o(.bss.QEncoder_Count_2)
+    dss_homed                                0x20000059   Data           1  app-dss.o(.bss.dss_homed)
+    __initial_sp                             0x20000460   Data           0  startup_stm32g030xx.o(STACK)
+
+
+
+==============================================================================
+
+Memory Map of the image
+
+  Image Entry point : 0x080000c1
+
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00001344, Max: 0x00010000, ABSOLUTE)
+
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00001344, Max: 0x00010000, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x08000000   0x08000000   0x000000c0   Data   RO          174    RESET               startup_stm32g030xx.o
+    0x080000c0   0x080000c0   0x00000000   Code   RO          195  * .ARM.Collect$$$$00000000  mc_p.l(entry.o)
+    0x080000c0   0x080000c0   0x00000004   Code   RO          202    .ARM.Collect$$$$00000001  mc_p.l(entry2.o)
+    0x080000c4   0x080000c4   0x00000004   Code   RO          205    .ARM.Collect$$$$00000004  mc_p.l(entry5.o)
+    0x080000c8   0x080000c8   0x00000000   Code   RO          207    .ARM.Collect$$$$00000008  mc_p.l(entry7b.o)
+    0x080000c8   0x080000c8   0x00000000   Code   RO          209    .ARM.Collect$$$$0000000A  mc_p.l(entry8b.o)
+    0x080000c8   0x080000c8   0x00000008   Code   RO          210    .ARM.Collect$$$$0000000B  mc_p.l(entry9a.o)
+    0x080000d0   0x080000d0   0x00000000   Code   RO          212    .ARM.Collect$$$$0000000D  mc_p.l(entry10a.o)
+    0x080000d0   0x080000d0   0x00000000   Code   RO          214    .ARM.Collect$$$$0000000F  mc_p.l(entry11a.o)
+    0x080000d0   0x080000d0   0x00000004   Code   RO          203    .ARM.Collect$$$$00002712  mc_p.l(entry2.o)
+    0x080000d4   0x080000d4   0x0000001c   Code   RO          175    .text               startup_stm32g030xx.o
+    0x080000f0   0x080000f0   0x00000030   Code   RO          224    .text               mc_p.l(init.o)
+    0x08000120   0x08000120   0x00000034   Code   RO          128    .text.Board_Init    lib-board.o
+    0x08000154   0x08000154   0x00000020   Code   RO          130    .text.Board_SetPanicLed  lib-board.o
+    0x08000174   0x08000174   0x00000028   Code   RO          132    .text.Board_SetRunLed  lib-board.o
+    0x0800019c   0x0800019c   0x000000a0   Code   RO          155    .text.Comms_ArgCompare  lib-comms.o
+    0x0800023c   0x0800023c   0x000000f4   Code   RO          157    .text.Comms_ArgScanInt  lib-comms.o
+    0x08000330   0x08000330   0x00000058   Code   RO          153    .text.Comms_BlockingTxString  lib-comms.o
+    0x08000388   0x08000388   0x0000000c   Code   RO          151    .text.Comms_CommandRetirement  lib-comms.o
+    0x08000394   0x08000394   0x0000000c   Code   RO          149    .text.Comms_CommandValid  lib-comms.o
+    0x080003a0   0x080003a0   0x000000d8   Code   RO          141    .text.Comms_Init    lib-comms.o
+    0x08000478   0x08000478   0x000000f8   Code   RO          159    .text.Comms_InternalHandleExec  lib-comms.o
+    0x08000570   0x08000570   0x000000a4   Code   RO          147    .text.Comms_InternalHandleRx  lib-comms.o
+    0x08000614   0x08000614   0x00000168   Code   RO           46    .text.DriverGPIO_Init  lib-driver-gpio.o
+    0x0800077c   0x0800077c   0x00000020   Code   RO           54    .text.DriverGPIO_Set1Direction  lib-driver-gpio.o
+    0x0800079c   0x0800079c   0x00000024   Code   RO           58    .text.DriverGPIO_Set1NSS  lib-driver-gpio.o
+    0x080007c0   0x080007c0   0x00000034   Code   RO           56    .text.DriverGPIO_Set1PWM  lib-driver-gpio.o
+    0x080007f4   0x080007f4   0x00000020   Code   RO           60    .text.DriverGPIO_Set2Direction  lib-driver-gpio.o
+    0x08000814   0x08000814   0x0000002c   Code   RO           64    .text.DriverGPIO_Set2NSS  lib-driver-gpio.o
+    0x08000840   0x08000840   0x00000038   Code   RO           62    .text.DriverGPIO_Set2PWM  lib-driver-gpio.o
+    0x08000878   0x08000878   0x00000020   Code   RO           50    .text.DriverGPIO_SetDrvoff  lib-driver-gpio.o
+    0x08000898   0x08000898   0x00000048   Code   RO           48    .text.DriverGPIO_SetEnable  lib-driver-gpio.o
+    0x080008e0   0x080008e0   0x00000060   Code   RO           73    .text.DriverSPI_Init  lib-driver-spi.o
+    0x08000940   0x08000940   0x00000080   Code   RO           77    .text.DriverSPI_WriteDev1  lib-driver-spi.o
+    0x080009c0   0x080009c0   0x00000088   Code   RO           81    .text.DriverSPI_WriteDev2  lib-driver-spi.o
+    0x08000a48   0x08000a48   0x00000010   Code   RO          115    .text.LMSW_Init     lib-limit-switch.o
+    0x08000a58   0x08000a58   0x0000003c   Code   RO          117    .text.LMSW_Read     lib-limit-switch.o
+    0x08000a94   0x08000a94   0x000000dc   Code   RO           90    .text.QEncoder_Init  lib-quadrature-enc.o
+    0x08000b70   0x08000b70   0x00000048   Code   RO           96    .text.QEncoder_Read1  lib-quadrature-enc.o
+    0x08000bb8   0x08000bb8   0x00000024   Code   RO           94    .text.QEncoder_Reset1  lib-quadrature-enc.o
+    0x08000bdc   0x08000bdc   0x0000002c   Code   RO           35    .text.Sys_BlockingDelayM  lib-rcc.o
+    0x08000c08   0x08000c08   0x00000040   Code   RO           33    .text.Sys_BlockingDelayU  lib-rcc.o
+    0x08000c48   0x08000c48   0x000000cc   Code   RO           31    .text.Sys_ClockInit  lib-rcc.o
+    0x08000d14   0x08000d14   0x00000002   Code   RO          182    .text.SystemInit    system_stm32g0xx.o
+    0x08000d16   0x08000d16   0x00000002   PAD
+    0x08000d18   0x08000d18   0x00000034   Code   RO           98    .text.TIM1_BRK_UP_TRG_COM_IRQHandler  lib-quadrature-enc.o
+    0x08000d4c   0x08000d4c   0x00000034   Code   RO          104    .text.TIM3_IRQHandler  lib-quadrature-enc.o
+    0x08000d80   0x08000d80   0x00000050   Code   RO          145    .text.USART1_IRQHandler  lib-comms.o
+    0x08000dd0   0x08000dd0   0x00000028   Code   RO           92    .text.__NVIC_EnableIRQ  lib-quadrature-enc.o
+    0x08000df8   0x08000df8   0x0000002c   Code   RO          143    .text.__NVIC_EnableIRQ  lib-comms.o
+    0x08000e24   0x08000e24   0x00000084   Code   RO           19    .text.dss_drill     app-dss.o
+    0x08000ea8   0x08000ea8   0x000000d4   Code   RO           15    .text.dss_home      app-dss.o
+    0x08000f7c   0x08000f7c   0x00000104   Code   RO           17    .text.dss_move_to   app-dss.o
+    0x08001080   0x08001080   0x00000124   Code   RO           13    .text.launch        app-dss.o
+    0x080011a4   0x080011a4   0x00000022   Code   RO            2    .text.main          main.o
+    0x080011c6   0x080011c6   0x0000000e   Code   RO          228    i.__scatterload_copy  mc_p.l(handlers.o)
+    0x080011d4   0x080011d4   0x00000002   Code   RO          229    i.__scatterload_null  mc_p.l(handlers.o)
+    0x080011d6   0x080011d6   0x0000000e   Code   RO          230    i.__scatterload_zeroinit  mc_p.l(handlers.o)
+    0x080011e4   0x080011e4   0x0000014f   Data   RO           22    .rodata.str1.1      app-dss.o
+    0x08001333   0x08001333   0x00000001   PAD
+    0x08001334   0x08001334   0x00000010   Data   RO          227    Region$$Table       anon$$obj.o
+
+
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08001344, Size: 0x00000460, Max: 0x00002000, ABSOLUTE)
+
+    Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
+
+    0x20000000        -       0x00000001   Zero   RW          163    .bss.Comms_Argc     lib-comms.o
+    0x20000001        -       0x00000010   Zero   RW          164    .bss.Comms_Argv     lib-comms.o
+    0x20000011        -       0x00000040   Zero   RW          165    .bss.Comms_CommandBuf  lib-comms.o
+    0x20000051        -       0x00000001   Zero   RW          162    .bss.Comms_InternalIndex  lib-comms.o
+    0x20000052        -       0x00000001   Zero   RW          161    .bss.Comms_InternalState  lib-comms.o
+    0x20000053   0x08001344   0x00000001   PAD
+    0x20000054        -       0x00000002   Zero   RW          106    .bss.QEncoder_Count_1  lib-quadrature-enc.o
+    0x20000056        -       0x00000002   Zero   RW          107    .bss.QEncoder_Count_2  lib-quadrature-enc.o
+    0x20000058        -       0x00000001   Zero   RW           23    .bss.dss_drill.prevsign  app-dss.o
+    0x20000059        -       0x00000001   Zero   RW           21    .bss.dss_homed      app-dss.o
+    0x2000005a   0x08001344   0x00000006   PAD
+    0x20000060        -       0x00000400   Zero   RW          172    STACK               startup_stm32g030xx.o
+
+
+==============================================================================
+
+Image component sizes
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+
+       896         80        335          0          2       2138   app-dss.o
+       124         16          0          0          0       1827   lib-board.o
+      1268         96          0          0         83       6022   lib-comms.o
+       716        128          0          0          0       3542   lib-driver-gpio.o
+       360         40          0          0          0       3097   lib-driver-spi.o
+        76          8          0          0          0       1285   lib-limit-switch.o
+       472         72          0          0          4       4938   lib-quadrature-enc.o
+       312         52          0          0          0       2653   lib-rcc.o
+        34          0          0          0          0        416   main.o
+        28          8        192          0       1024        664   startup_stm32g030xx.o
+         2          0          0          0          0       1953   system_stm32g0xx.o
+
+    ----------------------------------------------------------------------
+      4290        500        544          0       1120      28535   Object Totals
+         0          0         16          0          0          0   (incl. Generated)
+         2          0          1          0          7          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Member Name
+
+         0          0          0          0          0          0   entry.o
+         0          0          0          0          0          0   entry10a.o
+         0          0          0          0          0          0   entry11a.o
+         8          4          0          0          0          0   entry2.o
+         4          0          0          0          0          0   entry5.o
+         0          0          0          0          0          0   entry7b.o
+         0          0          0          0          0          0   entry8b.o
+         8          4          0          0          0          0   entry9a.o
+        30          0          0          0          0          0   handlers.o
+        48         10          0          0          0         68   init.o
+
+    ----------------------------------------------------------------------
+        98         18          0          0          0         68   Library Totals
+         0          0          0          0          0          0   (incl. Padding)
+
+    ----------------------------------------------------------------------
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Library Name
+
+        98         18          0          0          0         68   mc_p.l
+
+    ----------------------------------------------------------------------
+        98         18          0          0          0         68   Library Totals
+
+    ----------------------------------------------------------------------
+
+==============================================================================
+
+
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
+
+      4388        518        544          0       1120      28575   Grand Totals
+      4388        518        544          0       1120      28575   ELF Image Totals
+      4388        518        544          0          0          0   ROM Totals
+
+==============================================================================
+
+    Total RO  Size (Code + RO Data)                 4932 (   4.82kB)
+    Total RW  Size (RW Data + ZI Data)              1120 (   1.09kB)
+    Total ROM Size (Code + RO Data + RW Data)       4932 (   4.82kB)
+
+==============================================================================
+
