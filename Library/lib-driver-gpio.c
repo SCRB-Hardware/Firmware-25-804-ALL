@@ -7,52 +7,59 @@
 #if defined(DRIVER_USE_DRV1) || defined(DRIVER_USE_DRV2)
 
 void DriverGPIO_Init(void) {
-	// PB0: DRVOFF, Output Default High
-	// PB1: nFault, Input Active Low
-	// PB2: nSLEEP, Output Default Low
-	GPIOB->BSRR = 0x0001; 
-	GPIOB->BRR = 0x0004; 
-	GPIOB->MODER = GPIOB->MODER & 0xFFFFFFC0 | 0x00000011; 
+
+	GPIOA->BSRR = 0x0020;										// DRVOFF (PA5) HI
+	GPIOB->BRR = 0x4000;										// nSLEEP (PB14) default LO
+	GPIOA->MODER = GPIOA->MODER & 0xFFFFF3FF | 0x00000400;		// PA5 set as output
+	GPIOB->MODER = GPIOB->MODER & 0xCFFFFFFF | 0x10000000;		// PB14 set as output
+
+	GPIOB->MODER = GPIOB->MODER & 0x3CFFFFFF;					// PB12 (nFAULT1) and PB15 (nFAULT2) as input
+
 #ifdef DRIVER_USE_DRV1
-	// PA0: Driver 1 current feedback (ADC IN0)
-	// PA4: Driver 1 direction (High for FWD)
-	// PA6: Driver 1 PWM (TIM16_CH1, AF5)
-	// PB12: Driver 1 NSS
-	GPIOA->BSRR = 0x0010; 
-	GPIOA->AFR[0] = GPIOA->AFR[0] & 0xF0FFFFFF | 0x05000000; 
-	GPIOA->MODER = GPIOA->MODER & 0xFFFFCCFC | 0x00002103; 
+
+	GPIOB->BSRR = (1 << 1);										// PB1 (PH for DRV1) Hi for FWD direction
+	GPIOB->AFR[0] = GPIOB->AFR[0] & ~(0xF << 0) | (1 << 0);		// PB0 as AF1 (TIM3_CH3)
+	GPIOB->MODER = GPIOB->MODER & ~(3 << 2) | (1 << 2);			// PB1 as GPoutput
+	GPIOB->MODER = GPIOB->MODER & ~(3 << 0) | (2 << 0);			// PB0 as AF mode
+	GPIOA->MODER = GPIOA->MODER | (3 << (3*2));					// PA3 as analog mode
+
+	// set up ADC for PA3 for current monitoring in the future ??
+
 #ifdef DRIVER_USE_SPI
-	GPIOB->BSRR = 0x1000; 
-	GPIOB->OSPEEDR = GPIOB->OSPEEDR & 0xFCFFFFFF | 0x02000000; // 30MHz SPI pins
-	GPIOB->MODER = GPIOB->MODER & 0xFCFFFFFF | 0x01000000; 
+	GPIOB->BSRR = (1 << 13);											// SPI_CS1 (PB13) set
+	GPIOB->OSPEEDR = GPIOB->OSPEEDR & ~(3 << (13*2)) | (2 << (13*2));	// Hi Speed
+	GPIOB->MODER = GPIOB->MODER & ~(3 << (13*2)) | (1 << (13*2));		// PB13 as GPoutput
 #endif
-	// Initialize Timer 16 @ 64MHz
-	RCC->APBENR2 |= RCC_APBENR2_TIM16EN; 
-	__DSB(); 
-	TIM16->PSC = 3 - 1; 
-	TIM16->ARR = 1024 - 1; // 20.8kHz, 10 bits
-	TIM16->CCMR1 = 0x68; 
-	TIM16->CCER = 0x01; 
-	TIM16->CCR1 = 0x00; 
-	TIM16->BDTR = 0x00; 
-	TIM16->EGR = 0x1; 
-	TIM16->CR1 = 0x1; 
+
+	// Initialize Timer 3 ********************
+	RCC->APBENR1 |= RCC_APBENR1_TIM3EN							// enable TIM3
+	__DSB();
+	TIM3->PSC = 3-1;											//
+	TIM3->ARR = 1024 -1;
+	TIM3->CCMR1 = 0x68;
+	TIM3->CCER = 0x01;
+	TIM3->CCR1 = 0x00;
+	TIM3->BDTR = 0x00;
+	TIM3
+
 #endif
 #ifdef DRIVER_USE_DRV2
-	// PA1: Driver 2 current feedback ADC IN1)
-	// PA5: Driver 2 direction (High for FWD)
-	// PA7: Driver 2 PWM (TIM17_CH1, AF5)
-	// PA15: Driver 2 NSS
-	GPIOA->BSRR = 0x0020; 
-	GPIOA->AFR[0] = GPIOA->AFR[0] & 0x0FFFFFFF | 0x50000000; 
-	GPIOA->MODER = GPIOA->MODER & 0xFFFF33F3 | 0x0000840C; 
+
+	GPIOA->BSRR = (1 << 6);										// PA6 (PH for DRV2) Hi for FWD direction
+	GPIOA->AFR[0] = GPIOA->AFR[0] & ~(0xF << 28) | (5 << 28);	// PA7 as AF5 (TIM17_CH1)
+	GPIOA->MODER = GPIOA->MODER & ~(3 << 12) | (1 << 12);		// PA6 as GPoutput
+	GPIOB->MODER = GPIOB->MODER & ~(3 << 14) | (2 << 14);		// PA7 as AF mode
+	GPIOA->MODER = GPIOA->MODER | (3 << (2*2));					// PA2 as analog mode
+
+
 #ifdef DRIVER_USE_SPI
-	GPIOA->BSRR = 0x8000; 
-	GPIOA->OSPEEDR = GPIOA->OSPEEDR & 0x3FFFFFFF | 0x80000000; // 30MHz SPI pins
-	GPIOA->MODER = GPIOA->MODER & 0x3FFFFFFF | 0x40000000; 
+	GPIOA->BSRR = (1 << 4);												// SPI_CS2 (PA4) set
+	GPIOA->OSPEEDR = GPIOA->OSPEEDR & ~(3 << (4*2)) | (2 << (4*2));		// Hi speed
+	GPIOA->MODER = GPIOA->MODER & ~(3 << (4*2)) | (1 << (4*2));			// PA4 as GPoutput
 #endif
+
 	// Initialize Timer 17 @ 64MHz
-	RCC->APBENR2 |= RCC_APBENR2_TIM17EN; 
+	RCC->APBENR2 |= RCC_APBENR2_TIM17EN;
 	__DSB(); 
 	TIM17->PSC = 3 - 1; 
 	TIM17->ARR = 1024 - 1; // 20.8kHz, 10 bits
