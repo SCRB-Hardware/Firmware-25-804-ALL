@@ -8,8 +8,8 @@
 
 void DriverGPIO_Init(void) {
 
-	GPIOA->BSRR = 0x0020;										// DRVOFF (PA5) HI
-	GPIOB->BRR = 0x4000;										// nSLEEP (PB14) default LO
+	GPIOA->BSRR = (1 << 5);										// DRVOFF (PA5) HI
+	GPIOB->BRR = (1 << 14);										// nSLEEP (PB14) default LO
 	GPIOA->MODER = GPIOA->MODER & 0xFFFFF3FF | 0x00000400;		// PA5 set as output
 	GPIOB->MODER = GPIOB->MODER & 0xCFFFFFFF | 0x10000000;		// PB14 set as output
 
@@ -31,16 +31,21 @@ void DriverGPIO_Init(void) {
 	GPIOB->MODER = GPIOB->MODER & ~(3 << (13*2)) | (1 << (13*2));		// PB13 as GPoutput
 #endif
 
-	// Initialize Timer 3 ********************
-	RCC->APBENR1 |= RCC_APBENR1_TIM3EN							// enable TIM3
+	RCC->APBENR1 |= RCC_APBENR1_TIM3EN;									// enable TIM3
 	__DSB();
-	TIM3->PSC = 3-1;											//
-	TIM3->ARR = 1024 -1;
-	TIM3->CCMR1 = 0x68;
-	TIM3->CCER = 0x01;
-	TIM3->CCR1 = 0x00;
-	TIM3->BDTR = 0x00;
-	TIM3
+	TIM3->PSC = 3-1;													// PSC: set prescaler
+	TIM3->ARR = 1024-1;													// // ARR: set frequency 20.8kHz, 10 bits
+	// CCMR2:	set channel 3 as output
+	//			capture done ever 4 events
+	//			IC3F = 0110
+	TIM3->CCMR2 = (3 << 0) | (2 << 2) |  (6 << 4);
+	// CCER:	CC3E = 1
+	//			CC3P = 0
+	TIM3->CCER = (0x01 << 8);
+	TIM3->CCR3 = 0x00;													// set duty cycle: 	CCR3 = 0
+	TIM3->BDTR = 0x00;													// BDTR = 0
+	TIM3->EGR = 0x1;													// EGR:		UG = 1
+	TIM3->CR1 = 0X1;													// CR1:		CEN = 1
 
 #endif
 #ifdef DRIVER_USE_DRV2
@@ -67,70 +72,94 @@ void DriverGPIO_Init(void) {
 	TIM17->CCER = 0x01; 
 	TIM17->EGR = 0x1; 
 	TIM17->CR1 = 0x1; 
+
 #endif
 }
 
+// ENABLE DRIVER (1 = en)
 void DriverGPIO_SetEnable(int state) {
-	if(state) GPIOB->BSRR = 0x0004; 
-	else			GPIOB->BRR  = 0x0004; 
+
+	if(state)	GPIOB->BSRR = (1 << 14);
+	else		GPIOB->BRR  = (1 << 14);
+
 #ifdef DRIVER_USE_DRV1
-	TIM16->BDTR = state ? 0x8000 : 0; 
+	TIM3->BDTR = state ? 0x8000 : 0;
 #endif
 #ifdef DRIVER_USE_DRV2
 	TIM17->BDTR = state ? 0x8000 : 0; 
 #endif
+
 }
 
+
+// TURN DRIVERS OFF
 void DriverGPIO_SetDrvoff(int state) {
-	if(state) GPIOB->BSRR = 0x0001; 
-	else			GPIOB->BRR  = 0x0001; 
+
+	if(state)	GPIOA->BSRR = (1 << 5);
+	else 		GPIOB->BRR  = (1 << 5);
 }
 
 
+// CHECKS IF ANY OF THE DRIVERS HAS A FAULT
 int DriverGPIO_HasFault(void) {
-	return !(GPIOB->IDR & 0x0002); 
+	return (!(GPIOB->IDR & (1 << 12)) || !(GPIOB->IDR & (1 << 15)));		// returns 1 if DRV1 has fault OR DRV2 has fault
 }
+
 
 #ifdef DRIVER_USE_DRV1
 
+// SET DIRECTION OF DRIVER 1 (1 = FWD; 0 = BKWD)
 void DriverGPIO_Set1Direction(int state) {
-	if(state) GPIOA->BSRR = 0x0010; 
-	else			GPIOA->BRR  = 0x0010; 
+	if(state)	GPIOB->BSRR = (1 << 1);		// set PB1 (direction) for FWD
+	else		GPIOB->BRR  = (1 << 1);		// reset PB1 (direction) for FWD
 }
 
+
+// SET PWM (SPEED) OF DRIVER 1
 void DriverGPIO_Set1PWM(int pwm) {
-	if(pwm < 0) pwm = 0; 
+	if(pwm < 0)	pwm = 0;
 	if(pwm > 1024) pwm = 1024; 
-	TIM16->CCR1 = pwm; 
+	TIM3->CCR3 = pwm; 				// TIM3_CH3
 }
+
 
 #ifdef DRIVER_USE_SPI
+// SET SPI OF DRIVER 1
 void DriverGPIO_Set1NSS(int state) {
-	if(state) GPIOB->BSRR = 0x1000; 
-	else			GPIOB->BRR  = 0x1000; 
+	if(state)	GPIOB->BSRR = (1 << 13);		// set SPI_CS1 (PB13)
+	else		GPIOB->BRR  = (1 << 13);
 }
 #endif
+
 #endif
+
 
 #ifdef DRIVER_USE_DRV2
 
+// SET DIRECTION OF DRIVER 2
 void DriverGPIO_Set2Direction(int state) {
-	if(state) GPIOA->BSRR = 0x0020; 
-	else			GPIOA->BRR  = 0x0020; 
+	if(state)	GPIOA->BSRR = (1 << 6); 		// set PA6 --> FWD
+	else		GPIOA->BRR  = (1 << 6); 		// BKWD
 }
 
+
+// SET SPEED OF DRIVER 2
 void DriverGPIO_Set2PWM(int pwm) {
 	if(pwm < 0) pwm = 0; 
 	if(pwm > 1024) pwm = 1024; 
 	TIM17->CCR1 = pwm; 
 }
 
+
 #ifdef DRIVER_USE_SPI
+// SET SPI OF DRIVER 2
 void DriverGPIO_Set2NSS(int state) {
-	if(state) GPIOA->BSRR = 0x8000; 
-	else			GPIOA->BRR  = 0x8000; 
+	if(state)	GPIOA->BSRR = (1 << 4);
+	else		GPIOA->BRR  = (1 << 4);
 }
 #endif
+
 #endif
+
 
 #endif
