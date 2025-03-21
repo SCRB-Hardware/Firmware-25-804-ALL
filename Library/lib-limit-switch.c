@@ -11,9 +11,9 @@ void LMSW_Init(void) {
 
 int LMSW_Read(int index) {
 	// Returns whether the switch is closed (active)
-	// *********Need to verify in dss_home()***************Not sure about it
-	if(index != 2 || index != 3) return 0; 
-	return !(GPIOD->IDR & (1 << (index - 1))); 
+	// *********Need to change the argument in dss_home()***************
+	if(index != 1 || index != 2) return 0; 
+	return !(GPIOD->IDR & (1 << (index))); 
 }
 
 int LMSW_ReadAll(void) {
