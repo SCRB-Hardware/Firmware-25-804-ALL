@@ -1,0 +1,19 @@
+--cpu Cortex-M0+
+".\objects\main.o"
+".\objects\app-elv.o"
+".\objects\app-dss.o"
+".\objects\lib-rcc.o"
+".\objects\lib-smart-servo.o"
+".\objects\lib-pwm-servo.o"
+".\objects\lib-driver-gpio.o"
+".\objects\lib-driver-spi.o"
+".\objects\lib-quadrature-enc.o"
+".\objects\lib-limit-switch.o"
+".\objects\lib-board.o"
+".\objects\lib-comms.o"
+".\objects\startup_stm32g030xx.o"
+".\objects\system_stm32g0xx.o"
+--library_type=microlib --strict --scatter ".\Objects\Firmware-24-802-ALL.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\Listings\Firmware-24-802-ALL.map" -o .\Objects\Firmware-24-802-ALL.axf

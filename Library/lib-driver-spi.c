@@ -6,12 +6,18 @@
 #ifdef DRIVER_USE_SPI
 
 void DriverSPI_Init(void) {
+	//*************New Board**************
+	// PB10: SPI2_SCK  (AF5)
+	// PB2: SPI2_MISO (AF1)
+	// PB11: SPI2_MOSI (AF0)
+	//*************Old board**************
 	// PB13: SPI2_SCK  (AF0)
 	// PB14: SPI2_MISO (AF0)
 	// PB15: SPI2_MOSI (AF0)
-	GPIOB->AFR[1] = GPIOB->AFR[1] & 0x000FFFFF; 
-	GPIOB->OSPEEDR = GPIOB->OSPEEDR & 0x03FFFFFF | 0xA8000000; // 30MHz SPI pins
-	GPIOB->MODER = GPIOB->MODER & 0x03FFFFFF | 0xA8000000; 
+	GPIOB->AFR[0] = GPIOB->AFR[0] & 0xFFFFF1FF; 
+	GPIOB->AFR[1] = GPIOB->AFR[1] & 0xFFFF05FF; 
+	GPIOB->OSPEEDR = GPIOB->OSPEEDR & 0xFF0FFFCF | 0x00A00020; // 30MHz SPI pins
+	GPIOB->MODER = GPIOB->MODER & 0xFF0FFFCF | 0x00A00020; 
 	// SPI2 initialization, 8MHz @ 64MHz
 	RCC->APBENR1 |= RCC_APBENR1_SPI2EN; 
 	SPI2->CR2 = 0x0F00; // 16-bit
