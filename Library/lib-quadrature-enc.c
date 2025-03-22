@@ -14,7 +14,7 @@ uint16_t QEncoder_Count_2;
 void QEncoder_Init(void) {
 #ifdef ENCODER_USE_1
 	// PA8, PA9 (AF2)
-	GPIOA->AFR[1] = GPIOA->AFR[1] & 0xFFFFFF00 | 0x00000022; 
+	GPIOA->AFR[1] = GPIOA->AFR[1] & 0xFFFFFF00 | 0x00000022; //Switch to TIM!_CH1 and TIM1_CH2
 	GPIOA->MODER = GPIOA->MODER & 0xFFF0FFFF | 0x000A0000; 
 	RCC->APBENR2 |= RCC_APBENR2_TIM1EN; 
 	TIM1->CCER = 0x20; // Invert B
@@ -25,7 +25,7 @@ void QEncoder_Init(void) {
 	TIM1->CR1 = 0x5; 
 #endif
 #ifdef ENCODER_USE_2
-	// PC6, PC7 (AF1)
+	//******************Old board doesn't use encoder 2, Don't make changes to encoder2
 	GPIOC->AFR[0] = GPIOC->AFR[0] & 0x00FFFFFF | 0x11000000; 
 	GPIOC->MODER = GPIOC->MODER & 0xFFFF0FFF | 0x0000A000; 
 	RCC->APBENR1 |= RCC_APBENR1_TIM3EN; 

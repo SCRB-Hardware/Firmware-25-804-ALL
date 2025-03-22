@@ -112,6 +112,7 @@ int launch(void) {
 }
 
 void dss_home(int feedback) {
+	//*****************Need to know which limit switch dss_home is using********************
 	if(LMSW_Read(1)) {
 		// If limit switch already closed:
 		// Set motor to move DOWN
