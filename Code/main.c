@@ -12,8 +12,9 @@ extern void launch(void);
 int opa; 
 
 int main(void) {
+	Board_Init();
 	Sys_ClockInit(); 
-	Board_Init(); 
+	
 	Comms_Init(); 
 	
 	Board_SetPanicLed(1); 

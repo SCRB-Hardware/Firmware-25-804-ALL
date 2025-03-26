@@ -18,6 +18,11 @@ void Board_Init(void)
 
 	//Enables C5V_PV, M5V_PV, S12V_PV
 	//GPIOB->MODER = GPIOB->MODER & 0xFFFFF03F;
+	
+	
+	//Debug
+	GPIOA->MODER |= (2<<28)  | (2<<26);
+	GPIOA->AFR[1] = GPIOA->AFR[1] & (0xF00FFFF) ;
 }
 
 //state = 1 --> LED_PANIK turns ON

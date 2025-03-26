@@ -5,27 +5,35 @@
 /* ------ Clock and board config ------ */
 
 void Sys_ClockInit(void) {
-// Clock frequency: 64MHz
-// Clock source: HSE12
+
+	// disable PLL before configuration
+	if (RCC->CR & RCC_CR_PLLON) {
+		RCC->CR &= ~RCC_CR_PLLON;
+		while (RCC->CR & RCC_CR_PLLRDY);
+	}
+	
+	
+	// Clock frequency: 64MHz
+	// Clock source: HSE12
 	// Update VOS to high performance
 	RCC->APBENR1 |= RCC_APBENR1_PWREN; 
 	__DSB(); 
-	PWR->CR1 = PWR->CR1 & 0xFFFFD8FF | 0x00000300; 
-	while(PWR->SR2 & 0x00000400); 
+	PWR->CR1 |= PWR_CR1_VOS; 
+	while(PWR->SR2 & PWR_SR2_VOSF); 
 	
 	// Update flash wait state
 	RCC->AHBENR |= RCC_AHBENR_FLASHEN; 
 	__DSB(); 
 	FLASH->ACR |= 0x00000602; // TODO: enable prefetch?
 	
-	// Enable HSE
-	RCC->CR |= 0x00010000; 
-	while(!(RCC->CR & 0x00020000)); 
+	// enable HSI16
+	RCC->CR |= RCC_CR_HSION;
+	while (!(RCC->CR & RCC_CR_HSIRDY));
 	
-	// Configure PLL: 12M / 6(M) * 64(N) / 2(R)
-	RCC->PLLCFGR = 0x30004053; 
-	RCC->CR |= 0x01000000; 
-	while(!(RCC->CR & 0x02000000)); 
+	// Configure PLL: 16M / 2(M) * 16(N) / 2(R)
+	RCC->PLLCFGR = (2 << RCC_PLLCFGR_PLLSRC_Pos) | (1 << RCC_PLLCFGR_PLLM_Pos) | (16 << RCC_PLLCFGR_PLLN_Pos) | (1 << RCC_PLLCFGR_PLLR_Pos) | RCC_PLLCFGR_PLLREN; 
+	RCC->CR |= RCC_CR_PLLON; 
+	while(!(RCC->CR & RCC_CR_PLLRDY)); 
 	
 	// Switch clock to higher frequency
 	RCC->CFGR = 0x00000002; 
