@@ -38,7 +38,7 @@ void DriverGPIO_Init(void) {
 	// CCMR2:	set channel 3 as output
 	//			capture done ever 4 events
 	//			IC3F = 0110
-	TIM3->CCMR2 = (3 << 0) | (2 << 2) |  (6 << 4);
+	TIM3->CCMR2 = (2 << 2) |  (6 << 4);
 	// CCER:	CC3E = 1
 	//			CC3P = 0
 	TIM3->CCER = (0x01 << 8);
@@ -53,7 +53,7 @@ void DriverGPIO_Init(void) {
 	GPIOA->BSRR = (1 << 6);										// PA6 (PH for DRV2) Hi for FWD direction
 	GPIOA->AFR[0] = GPIOA->AFR[0] & ~(0xF << 28) | (5 << 28);	// PA7 as AF5 (TIM17_CH1)
 	GPIOA->MODER = GPIOA->MODER & ~(3 << 12) | (1 << 12);		// PA6 as GPoutput
-	GPIOB->MODER = GPIOB->MODER & ~(3 << 14) | (2 << 14);		// PA7 as AF mode
+	GPIOA->MODER = GPIOA->MODER & 0xFFFF3FFF | 0x00008000;		// PA7 as AF mode
 	GPIOA->MODER = GPIOA->MODER | (3 << (2*2));					// PA2 as analog mode
 
 
@@ -96,7 +96,7 @@ void DriverGPIO_SetEnable(int state) {
 void DriverGPIO_SetDrvoff(int state) {
 
 	if(state)	GPIOA->BSRR = (1 << 5);
-	else 		GPIOB->BRR  = (1 << 5);
+	else 		GPIOA->BRR  = (1 << 5);
 }
 
 
