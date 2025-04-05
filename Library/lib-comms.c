@@ -29,9 +29,10 @@ void Comms_Init(void) {
 	// No DE, baud rate 115200
 	USART1->CR1 = 0x20200020;
 	USART1->CR2 = 0X00000000;
-	USART1->CR3 = 0x00004000;
+	USART1->CR3 = 0x00005000;
 	USART1->BRR = 556;			// baud rate 115200
 	USART1->CR1 |= 0xD;			// enable TE, RE and UART
+	
 
 	// Enable RX IRQ
 	NVIC_EnableIRQ(USART1_IRQn); 
