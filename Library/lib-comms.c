@@ -163,7 +163,7 @@ void Comms_BlockingTxString(const char *str)
 	}
 
 	// wait for transmission to finish
-	while (!(USART1->ISR & USART1_ISR_TC))
+	while (!(USART1->ISR & USART_ISR_TC))
 		;
 	// switch back TX to RX for receive mode
 	USART1->CR1 &= 0xFFFFFFF2; // disable TE, RE and UE
