@@ -36,7 +36,7 @@
 #define DRIVER_USE_DRV2		// Drilling motor
 #define DRIVER_USE_SPI		// SPI-enabled driver
 #define ENCODER_USE_1			// Lifting motor
-#define ENCODER_USE_2			// Drilling motor
+//efine ENCODER_USE_2			// Drilling motor
 //efine SERVO_USE
 													// Smart servo: not used
 													// Limit switch: 1&2 for drill head
